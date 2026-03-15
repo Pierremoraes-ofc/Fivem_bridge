@@ -319,5 +319,13 @@ TriggerClientEvent('bridge:notify', source, { title = 'Sistema', description = '
 
 ---
 
-## 📄 License
-This project is under the MIT License. See the **LICENSE** file for more details.
+## 👨‍💻 Credits / Créditos
+
+* **Original Developer:** [Andyyy7666](https://github.com/Andyyy7666/fivem_bridge)
+* This project is heavily based on their original concept of a unified bridge for FiveM.
+* Este projeto é fortemente baseado no conceito original deles de uma bridge unificada para FiveM.
+
+---
+
+## 📄 License | Licença
+This project is under the MIT License. See the **LICENSE** file for more details. / Este projeto está sob a licença MIT. Veja o arquivo **LICENSE** para mais detalhes.
