@@ -1,10 +1,18 @@
 # fivem_bridge
 
-Uma bridge poderosa e leve para recursos de FiveM, projetada para simplificar a compatibilidade entre frameworks, inventários, notificações, targets e telefones.
+[🇺🇸 English Version](#-english) | [🇧🇷 Versão em Português](#-português-br)
 
-Nosso objetivo é criar uma bridge sem excessos (bloatware), fácil de entender e que permita compatibilidade imediata em seus scripts com apenas algumas linhas de código.
+---
 
-## 🚀 Recursos Suportados
+<br>
+
+## 🇺🇸 English
+
+A powerful and lightweight bridge for FiveM resources, designed to simplify compatibility across frameworks, inventories, notifications, targets, and phones.
+
+Our goal is to create an intuitive bridge with no bloatware, allowing immediate compatibility in your scripts with just a few lines of code.
+
+### 🚀 Supported Resources
 
 | ✔️ Frameworks | 🎒 Inventories  | 🔔 Notifications      | 🎯 Targets    | 📱 Phones     | ⏳ Progressbars | ⛅ Weather             | ⛽ Fuel       | 🔑 Vehicle Keys   |
 | ------------- | --------------- | --------------------- | ------------- | ------------- | ---------------- | ----------------------- | ------------- | ------------------ |
@@ -16,7 +24,131 @@ Nosso objetivo é criar uma bridge sem excessos (bloatware), fácil de entender 
 
 ---
 
-## 📦 Como Usar em seu Custom Script
+### 📦 How to Use in your Custom Script
+
+For your custom script (e.g., `Custom_script`) to natively use the bridge functions, you must import it into your `fxmanifest.lua`.
+
+**Important:** The loading order inside `shared_scripts` must be strictly set as follows:
+
+**In your `fxmanifest.lua`:**
+```lua
+fx_version 'cerulean'
+game 'gta5'
+lua54 'yes' -- Recommended
+
+-- 1. Set the dependency to ensure the bridge starts before your script
+dependency 'fivem_bridge'
+
+-- 2. Import the bridge into your script's local scope
+shared_scripts {
+    '@ox_lib/init.lua',
+    '@fivem_bridge/bridge/config.lua',
+    '@fivem_bridge/bridge/init.lua'
+}
+
+-- Your files start below:
+client_script 'client.lua'
+server_script 'server.lua'
+```
+
+Once done, the global `Bridge` table will be automatically available in **all** matching Lua files (Client and Server), with no need for `require` or `exports`!
+
+---
+
+### 📚 Full Function Catalog (API)
+
+Below we list the available functions across the bridge modules (Client/Server).
+
+#### 1. Framework (`Bridge.framework`)
+**💻 Client-side**
+* **`Bridge.framework.GetPlayer()`**: Returns a table with the local player's character data (`.fullName`, `.firstName`, `.lastName`, `.dob`, `.gender`).
+* **`Bridge.framework.GetMoney(type)`**: Returns the account balance based on the requested string type (`"cash"`, `"bank"`, `"black"`).
+* **`Bridge.framework.GetJobInfo()`**: Returns job data (`.jobName`, `.jobLabel`, `.grade`, `.gradeName`).
+* **`Bridge.framework.IsPlayerLoaded()`**: Returns `true` if the player has been validated and logged in.
+* **`Bridge.framework.getPlayerMetadata(meta)`**: Returns the value of a metadata string saved to the character.
+* **`Bridge.framework.toggleOutfit(wear, outfits)`**: Changes the player's clothing/skin based on saved outfits.
+
+**Ex (Client):**
+```lua
+if Bridge.framework.IsPlayerLoaded() then
+    local player = Bridge.framework.GetPlayer()
+    print(("Logged in: %s"):format(player.fullName))
+end
+```
+
+**🖥️ Server-side**
+* **`Bridge.framework.RegisterCallback(name, cb)`**: Registers a server-to-client callback.
+* **`Bridge.framework.GetPlayer(source)`**: Fetches the raw player object directly from the framework.
+* **`Bridge.framework.GetIdentifier(source)`**: Gets the master ID (CitizenID/RockstarID).
+* **`Bridge.framework.getPlayerName(source)`**: Returns "First Last" name from the database.
+* **`Bridge.framework.GetCoords(source, withHeading)`**: Returns `vec3` (or `vec4` if `withHeading == true`).
+* **`Bridge.framework.getPlayerMoney(source, type)`**: Gets player balance.
+* **`Bridge.framework.addPlayerMoney(source, type, amount)`**: Adds money and emits native logging.
+* **`Bridge.framework.removePlayerMoney(source, type, amount)`**: Removes money from the character account.
+
+**Ex (Server):**
+```lua
+RegisterNetEvent('myscript:payBail', function(amount)
+    local src = source
+    if Bridge.framework.getPlayerMoney(src, 'cash') >= amount then
+        Bridge.framework.removePlayerMoney(src, 'cash', amount)
+        Bridge.framework.addSocietyBalance('police', amount)
+    end
+end)
+```
+
+#### 2. Inventory (`Bridge.inventory`)
+**💻 Client-side**
+* **`Bridge.inventory.GetItemCount(itemName, metadata, strict)`**: Returns held stock.
+* **`Bridge.inventory.openInventory(invType, data)`** / **`closeInventory()`**
+
+**🖥️ Server-side**
+* **`Bridge.inventory.AddItem(source, item, count, metadata, slot, cb)`**: Appends item.
+* **`Bridge.inventory.RegisterStash(id, label, slots, maxWeight, owner, groups, coords)`**: Allocates inventory memory.
+
+#### 3. Target (`Bridge.target`)
+**💻 Client-side only**
+* **`Bridge.target.addBoxZone({coords, size, rotation, options})`**: Adds polygon interaction.
+* **`Bridge.target.addEntity(netIds, options)`**: Target specifically directed to a vehicle/ped.
+
+#### 4. Notifications (`Bridge.notify`)
+**💻 Client-side**
+* **`Bridge.notify.Notify({title, description, type, duration})`**
+
+**🖥️ Server-side:**
+`TriggerClientEvent('bridge:notify', source, {title = 'Notice', description = 'Text', type = 'inform'})`
+
+#### 5. Phones (`Bridge.phone`)
+**💻 Client-side**
+* **`Bridge.phone.InPhone()`**: Returns true if phone is visible.
+* **`Bridge.phone.CreateCall(name, number, photo, isVideoCall)`**
+
+**🖥️ Server-side**
+* **`Bridge.phone.SendNewMessageFromApp(source, appNumber, message, appName)`**: Directly pushes native UI text.
+
+<br>
+<hr>
+<br>
+
+## 🇧🇷 Português (BR)
+
+Uma bridge poderosa e leve para recursos de FiveM, projetada para simplificar a compatibilidade entre frameworks, inventários, notificações, targets e telefones.
+
+Nosso objetivo é criar uma bridge sem excessos (bloatware), fácil de entender e que permita compatibilidade imediata em seus scripts com apenas algumas linhas de código.
+
+### 🚀 Recursos Suportados
+
+| ✔️ Frameworks | 🎒 Inventories  | 🔔 Notifications      | 🎯 Targets    | 📱 Phones     | ⏳ Progressbars | ⛅ Weather             | ⛽ Fuel       | 🔑 Vehicle Keys   |
+| ------------- | --------------- | --------------------- | ------------- | ------------- | ---------------- | ----------------------- | ------------- | ------------------ |
+| NDCore        | ox_inventory    | ox_lib                | ox_target     | qs-smartphone | ox_lib           | Renewed-Weathersync     | cdn-fuel      | mm_carkeys         |
+| ox_core       | qs-inventory    | qbx-core (lib)        | qbx-core (ox) | lb-phone      | qbx-core         | cd_easytime             | lc_fuel       | mri_Qcarkeys       |
+| es_extended   | codem-inventory | es_extended           | qb-target     | okokPhone     | qb-core          | qb-weathersync          | LegacyFuel    | qb-vehiclekeys     |
+| qbx-core      | origen_inventory| qb-core               |               | yseries       | es_extended      | default (GTA Native)    |               | qbx_vehiclekeys    |
+| qb-core       | qb-inventory    | GTA Default           |               |               |                  |                         |               | wasabi_carlock     |
+
+---
+
+### 📦 Como Usar em seu Custom Script
 
 Para que o seu script (ex: `Custom_script`) consiga utilizar as funções da bridge nativamente, você deve importá-la no seu `fxmanifest.lua`. 
 
@@ -47,26 +179,16 @@ Feito isso, a tabela global `Bridge` estará automaticamente disponível em **to
 
 ---
 
-## 📚 Catálogo Completo de Funções (API)
+### 📚 Catálogo Completo de Funções (API)
 
 Abaixo catalogamos as funções disponíveis nos módulos da bridge. A usabilidade varia de acordo com o Client (`client.lua`) ou Server (`server.lua`).
 
-### 1. Framework (`Bridge.framework`)
+#### 1. Framework (`Bridge.framework`)
 
-#### 💻 Client-side
-* **`Bridge.framework.GetPlayer()`**: Retorna uma tabela com os dados do personagem do jogador local.
-  * `.fullName` (string) = Nome completo (Ex: John Doe)
-  * `.firstName` (string) = Primeiro nome
-  * `.lastName` (string) = Sobrenome
-  * `.dob` (string) = Aniversário
-  * `.gender` (number/string) = Gênero do personagem
-* **`Bridge.framework.GetMoney(type)`**: Retorna o saldo da conta na tipagem de dinheiro solicitada.
-  * *Tipos aceitos:* `"cash"` (carteira), `"bank"` (banco), `"black"` ou `"black_money"` (dinheiro sujo).
-* **`Bridge.framework.GetJobInfo()`**: Retorna os dados sobre a profissão do jogador local.
-  * `.jobName` (string) = ID interno da profissão (ex: police)
-  * `.jobLabel` (string) = Nome legível (ex: Los Santos Police Department)
-  * `.grade` (number) = ID numérico do cargo
-  * `.gradeName` (string) = Nome legível do cargo (ex: Officer)
+**💻 Client-side**
+* **`Bridge.framework.GetPlayer()`**: Retorna uma tabela com os dados do personagem do jogador local (`.fullName`, `.firstName`, `.lastName`, `.dob`, `.gender`).
+* **`Bridge.framework.GetMoney(type)`**: Retorna o saldo da conta na tipagem de dinheiro solicitada (`"cash"`, `"bank"`, `"black"`).
+* **`Bridge.framework.GetJobInfo()`**: Retorna os dados sobre a profissão do jogador local (`.jobName`, `.jobLabel`, `.grade`, `.gradeName`).
 * **`Bridge.framework.IsPlayerLoaded()`**: Retorna `true` se o jogador já estiver sido validado e logado no framework.
 * **`Bridge.framework.getPlayerMetadata(meta)`**: Retorna o valor de um "metadata" salvo no char do player.
 * **`Bridge.framework.toggleOutfit(wear, outfits)`**: Altera as roupas/skin do jogador para a contida em outfits (aplicado pelo framework de salvamento).
@@ -84,7 +206,7 @@ if Bridge.framework.IsPlayerLoaded() then
 end
 ```
 
-#### 🖥️ Server-side
+**🖥️ Server-side**
 * **`Bridge.framework.RegisterCallback(name, cb)`**: Registra um callback servidor-cliente.
 * **`Bridge.framework.GetPlayer(source)`**: (Alias: `getPlayerFromId`) Pega o objeto cru do player diretamente do framework.
 * **`Bridge.framework.GetIdentifier(source)`**: Pega o ID mestre (CitizenID/RockstarID) de um player conectado.
@@ -124,17 +246,11 @@ end)
 
 ---
 
-### 2. Inventário (`Bridge.inventory`)
+#### 2. Inventário (`Bridge.inventory`)
 
-Utilitário voltado a interações de baús e manipulação de propriedades dos itens. (Depende se o inventário como ox_inventory possuir o export).
-
-#### 💻 Client-side
-* **`Bridge.inventory.openInventory(invType, data)`**: Abre inventário específico.
-* **`Bridge.inventory.openNearbyInventory()`**: Atalho para dropar e vasculhar o chão.
-* **`Bridge.inventory.closeInventory()`**: Fecha UI à força.
+**💻 Client-side**
+* **`Bridge.inventory.openInventory(invType, data)`** / **`closeInventory()`**: Abre/fecha UI do inventário especificado.
 * **`Bridge.inventory.GetItemCount(itemName, metadata, strict)`**: Quantidade de `"itemName"` em mão.
-* **`Bridge.inventory.Items(itemName)`**: Retorna tabela de configurações fixas do item (nome exibido, limite, peso) no banco do server.
-* **`Bridge.inventory.Search(search, item, metadata)`**: Busca customizada com metadata.
 * **`Bridge.inventory.GetPlayerItems()`**: Matriz com tudo que tem na mala do Jogador.
 
 **Exemplo Prático (Client):**
@@ -142,44 +258,28 @@ Utilitário voltado a interações de baús e manipulação de propriedades dos 
 local qtdAgua = Bridge.inventory.GetItemCount("water")
 if qtdAgua > 0 then
     print("Você tem " .. qtdAgua .. " garrafas de água. Pode beber!")
-else
-    print("Você está com sede e sem água.")
 end
 ```
 
-#### 🖥️ Server-side
+**🖥️ Server-side**
 * **`Bridge.inventory.AddItem(inv, item, count, metadata, slot, cb)`**: (Soma item na conta) O parâmetro inv é o ID/Source.
 * **`Bridge.inventory.GetItem(inv, item, metadata, returnsCount)`**: Fetch bruto de item.
-* **`Bridge.inventory.GetItemCount(inv, itemName, metadata, strict)`**: Confirma estoque interno de items.
-* **`Bridge.inventory.ClearInventory(inv, keep)`**: Wipe de itens do Source (exceto o indexado param keep).
 * **`Bridge.inventory.RegisterStash(id, label, slots, maxWeight, owner, groups, coords)`**: Inicia baú e aloca memória.
-* **`Bridge.inventory.CustomDrop(prefix, items, coords, slots, maxWeight, instance, model)`**: Spawna na rua uma mochila com itens pré-alocados.
 
 **Exemplo Prático (Server):**
 ```lua
 RegisterNetEvent('meuscript:darRecompensa', function()
-    local src = source
-    local sucesso = Bridge.inventory.AddItem(src, "bread", 5)
-    
-    if sucesso then
-        print("Pão dado ao jogador!")
-    end
+    local sucesso = Bridge.inventory.AddItem(source, "bread", 5)
 end)
 ```
 
 ---
 
-### 3. Target (`Bridge.target`)
+#### 3. Target (`Bridge.target`)
 
-Para o sistema principal de UI (Visão Radial ou Ícone de Terceira Pessoa "Olho mágico").
-
-#### 💻 Client-side (Exclusivo)
-* **`Bridge.target.addBoxZone(parameters)`**: Adiciona Poligono no ar onde o olho mágico pega interações via caixa com tamanho fixo e distância configurada.
-* **`Bridge.target.addSphereZone(parameters)`**: Uma zona redonda ativável.
-* **`Bridge.target.addModel(models, options)`**: Aplica o menu de interação a um prop/hash de modelo (Ex: Todos os lixos da cidade!).
+**💻 Client-side (Exclusivo)**
+* **`Bridge.target.addBoxZone(parameters)`**: Adiciona Poligono no ar onde o olho mágico pega interações.
 * **`Bridge.target.addEntity(netIds, options)`**: Interação direcionada para um carro ou player específico da rede.
-* **`Bridge.target.addGlobalPlayer(options)`**: Interações em jogador que funcionam pelo target system inteiro (Ex: Algemar outro jogador).
-* **`Bridge.target.addGlobalVehicle(options)`**: Funções globais para todos os veículos (Ex: Abastecimento de combustível).
 * **`Bridge.target.removeZone(id)`**: Remove o registro interativo ativo da zona.
 
 **Exemplo Prático (Client):**
@@ -188,82 +288,36 @@ Bridge.target.addBoxZone({
     coords = vec3(425.1, -979.5, 30.7),
     size = vec3(1.5, 1.5, 2.0),
     rotation = 0,
-    options = {
-        {
-            label = 'Interagir com Caixa',
-            icon = 'fas fa-box',
-            onSelect = function()
-                print("Você acessou a caixa.")
-            end
-        }
-    }
+    options = { { label = 'Interagir com Caixa', icon = 'fas fa-box', onSelect = function() print("Acessou caixa") end } }
 })
 ```
 
 ---
 
-### 4. Notificações (`Bridge.notify`)
+#### 4. Notificações (`Bridge.notify`)
 
-#### 💻 Client-side
-* **`Bridge.notify.Notify(NotificationData)`**: Notifica localmente o player. O `NotificationData` pode receber:
-  * `.title` = Cabeçalho;
-  * `.description` = Corpo de Texto;
-  * `.type` = `"inform"` | `"error"` | `"success"`;
-  * `.duration` = (Tempo MS);
+**💻 Client-side**
+* **`Bridge.notify.Notify(NotificationData)`**: Notifica localmente o player. O `NotificationData` pode conter `.title`, `.description`, `.type` (`"inform"`, `"success"`, `"error"`) e `.duration`.
 
-**Exemplo Prático (Client):**
+**🖥️ Server-side**
+Acione remotamente:
 ```lua
-Bridge.notify.Notify({
-    title = 'Aviso de Multa',
-    description = 'Você ultrapassou o limite de velocidade!',
-    type = 'error',
-    duration = 5000
-})
-```
-
-#### 🖥️ Server-side
-Não usa bridge local, acione remotamente:
-
-**Exemplo Prático (Server):**
-```lua
-TriggerClientEvent('bridge:notify', source, { 
-    title = 'Sistema', 
-    description = 'Seus itens foram salvos.', 
-    type = 'success' 
-})
+TriggerClientEvent('bridge:notify', source, { title = 'Sistema', description = 'Seus itens foram salvos.', type = 'success' })
 ```
 
 ---
 
-### 5. Telefones (`Bridge.phone`)
+#### 5. Telefones (`Bridge.phone`)
 
-#### 💻 Client-side
+**💻 Client-side**
 * **`Bridge.phone.InPhone()`**: Retorna booleano, indicando se a pessoa tem o celular "sacado" na mão e na cara.
-* **`Bridge.phone.ClosePhone()`**: Força a interrupção visual do telemóvel.
 * **`Bridge.phone.CreateCall(name, number, photo, isVideoCall)`**: Inicializa app de call instantaneamente via bridge request.
 
-**Exemplo Prático (Client):**
-```lua
-RegisterCommand('ligarpolicia', function()
-    if not Bridge.phone.InPhone() then
-        Bridge.phone.CreateCall("Emergência Policial", "911", nil, false)
-    end
-end)
-```
-
-#### 🖥️ Server-side
-* **`Bridge.phone.SendNewMessageFromApp(source, appNumber, message, appName)`**: Adiciona um torpedo "nativo" à UI do celular, enviando uma notificação sem ser da interface core do jogo.
+**🖥️ Server-side**
+* **`Bridge.phone.SendNewMessageFromApp(source, appNumber, message, appName)`**: Adiciona um torpedo "nativo" à UI do celular.
 * **`Bridge.phone.HasEmailAccount(source)`**: Verifica se está com o app integrado logado no character!
-
-**Exemplo Prático (Server):**
-```lua
-RegisterNetEvent('mecanico:carroPronto', function()
-    local src = source
-    Bridge.phone.SendNewMessageFromApp(src, "Benny's", "Seu Skyline está pronto para retirada!", "Messages")
-end)
-```
 
 ---
 
-## 📄 Licença
-Este projeto está sob a licença MIT. Veja o arquivo **LICENSE** para mais detalhes.
+## 📄 License
+This project is under the MIT License. See the **LICENSE** file for more details.
