@@ -298,11 +298,20 @@ Bridge.target.addBoxZone({
 
 **💻 Client-side**
 * **`Bridge.notify.Notify(NotificationData)`**: Notifica localmente o player. O `NotificationData` pode conter `.title`, `.description`, `.type` (`"inform"`, `"success"`, `"error"`) e `.duration`.
-
+```lua
+Bridge.notify.NotifyPlayer(source, {
+    title       = "Sistema",
+    description = "Seus itens foram salvos.",
+    type        = "success"
+})
 **🖥️ Server-side**
 Acione remotamente:
 ```lua
-TriggerClientEvent('bridge:notify', source, { title = 'Sistema', description = 'Seus itens foram salvos.', type = 'success' })
+Bridge.notify.NotifyAll({
+    title       = "Aviso",
+    description = "O servidor reinicia em 5 minutos.",
+    type        = "error"
+})
 ```
 
 ---

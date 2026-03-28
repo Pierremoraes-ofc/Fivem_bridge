@@ -1,6 +1,9 @@
 local framework = {}
 local ESX = exports["es_extended"]:getSharedObject()
 
+Debug('SUCCESS', Lang:t('Debug.FrameworkDetected') .. 'ESX Legacy')
+
+
 function framework.RegisterCallback(name, cb)
     ESX.RegisterServerCallback(name, cb)
 end

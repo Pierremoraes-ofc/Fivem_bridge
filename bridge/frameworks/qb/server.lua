@@ -1,6 +1,7 @@
 local framework = {}
 local QBCore = exports["qb-core"]:GetCoreObject()
 
+Debug('SUCCESS', Lang:t('Debug.FrameworkDetected') .. 'QB Core')
 
 function framework.RegisterCallback(name, cb)
     QBCore.Functions.CreateCallback(name, cb)

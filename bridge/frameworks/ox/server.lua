@@ -1,6 +1,8 @@
 local framework = {}
 local Ox = require '@ox_core.lib.init'
 
+Debug('SUCCESS', Lang:t('Debug.FrameworkDetected') .. 'OX Core')
+
 function framework.RegisterCallback(name, cb)
     if lib and lib.callback then
         lib.callback.register(name, cb)

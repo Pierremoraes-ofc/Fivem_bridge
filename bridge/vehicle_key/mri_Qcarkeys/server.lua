@@ -1,6 +1,10 @@
 local vehicle_key = {}
 local mri_Qcarkeys = exports.mri_Qcarkeys
 
+if GetResourceState('mri_Qcarkeys') == 'started' then
+    Debug('SUCCESS', Lang:t('Debug.VehicleKeyDetected') .. 'MRI Qcarkeys')
+end
+
 function vehicle_key.GiveTempKeys(source, plate)
     mri_Qcarkeys:GiveTempKeys(source, plate)
 end

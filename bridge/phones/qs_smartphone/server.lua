@@ -1,5 +1,9 @@
 local phone = {}
 
+if GetResourceState('qs-smartphone-pro') == 'started' then
+    Debug('SUCCESS', Lang:t('Debug.PhoneDetected') .. 'QS Smartphone Pro')
+end
+
 ---Get a list of all available phone names in the system.
 ---@return table
 function phone.GetPhoneNames()

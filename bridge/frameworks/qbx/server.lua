@@ -1,6 +1,8 @@
 local framework = {}
 local qbx_core = exports.qbx_core
 
+Debug('SUCCESS', Lang:t('Debug.FrameworkDetected') .. 'QBX Core')
+
 function framework.RegisterCallback(name, cb)
     if lib and lib.callback then
         lib.callback.register(name, cb)

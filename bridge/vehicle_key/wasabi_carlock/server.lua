@@ -2,6 +2,10 @@ local vehicle_key = {}
 local wasabi_carlock = exports.wasabi_carlock
 local wasabi_scripts = exports.wasabi_scripts
 
+if GetResourceState('wasabi_carlock') == 'started' then
+    Debug('SUCCESS', Lang:t('Debug.VehicleKeyDetected') .. 'Wasabi CarLock')
+end
+
 function vehicle_key.HasKey(source, plate)
     return wasabi_carlock:HasKey(source, plate)
 end

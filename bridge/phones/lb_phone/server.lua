@@ -1,5 +1,10 @@
 local phone = {}
 
+if GetResourceState('lb-phone') == 'started' then
+    Debug('SUCCESS', Lang:t('Debug.PhoneDetected') .. 'LB-Phone')
+end
+
+
 ---Get a list of all available phone names in the system.
 ---@return table
 function phone.GetPhoneNames()

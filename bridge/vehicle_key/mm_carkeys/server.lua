@@ -1,6 +1,10 @@
 local vehicle_key = {}
 local mm_carkeys = exports.mm_carkeys
 
+if GetResourceState('mm_carkeys') == 'started' then
+    Debug('SUCCESS', Lang:t('Debug.VehicleKeyDetected') .. 'MM Car Keys')
+end
+
 function vehicle_key.GiveTempKeys(source, plate)
     mm_carkeys:GiveTempKeys(source, plate)
 end

@@ -1,6 +1,8 @@
 local inventory = {}
 local qs_inventory = exports['qs-inventory']
 
+Debug('SUCCESS', Lang:t('Debug.InventoryDetected') .. 'Quasar Inventory')
+
 ---@param player number
 ---@param data table
 function inventory.setPlayerInventory(player, data)

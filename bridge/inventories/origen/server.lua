@@ -1,6 +1,8 @@
 local inventory = {}
 local origen_inventory = exports.origen_inventory
 
+Debug('SUCCESS', Lang:t('Debug.InventoryDetected') .. 'Origen Inventory')
+
 ---@param player number
 ---@param data table
 function inventory.setPlayerInventory(player, data)

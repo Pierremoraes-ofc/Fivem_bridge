@@ -1,6 +1,8 @@
 local inventory = {}
 local ox_inventory = exports.ox_inventory
 
+Debug('SUCCESS', Lang:t('Debug.InventoryDetected') .. 'Ox Inventory')
+
 function inventory.setPlayerInventory(player, data)
     ox_inventory:setPlayerInventory(player, data)
 end

@@ -1,6 +1,8 @@
 local inventory = {}
 local codem_inventory = exports['codem-inventory']
 
+Debug('SUCCESS', Lang:t('Debug.InventoryDetected') .. 'Codem Inventory')
+
 ---@param player number
 ---@param data table
 function inventory.setPlayerInventory(player, data)

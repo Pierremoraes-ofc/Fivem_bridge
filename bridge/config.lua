@@ -65,3 +65,34 @@ ConfigBridge = {
         { resource = "wasabi_carlock", folder = "wasabi_carlock" }
     }
 }
+
+Config = {
+    Debug = false                               -- toggle para devs
+}
+local DebugFilters = {
+	SUCCESS = function(...)
+		print('[DEBUG SUCCESS]:', ...)
+	end,
+
+	INFO = function(...)
+		print('[DEBUG INFO]:', ...)
+	end,
+
+	ERROR = function(...)
+		print('[DEBUG ERROR]:', ...)
+	end,
+
+	WARNING = function(...)
+		print('[DEBUG WARNING]:', ...)
+	end
+}
+
+function Debug(name, ...)
+	local fn = DebugFilters[name]
+
+	if fn then
+		fn(...)
+	elseif Config.Debug then
+		print('[DEBUG]:', ...)
+	end
+end

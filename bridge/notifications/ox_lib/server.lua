@@ -1,6 +1,6 @@
 local notifications = {}
 
-
+Debug('SUCCESS', Lang:t('Debug.NotificationDetected') .. 'Ox Lib Notification')
 
 ---Send notification to player
 ---@param src number

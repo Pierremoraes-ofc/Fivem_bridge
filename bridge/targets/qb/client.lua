@@ -269,7 +269,7 @@ function target.addBoxZone(parameters)
     local distance = getFurthestOptionDistance(options)
     local newOptions = tweakOptions(options)
 
-    return qb_target:AddBoxZone(parameters.name, parameters.coords, parameters.size.x, parameters.size.y,
+    qb_target:AddBoxZone(parameters.name, parameters.coords, parameters.size.x, parameters.size.y,
         {
             name = parameters.name,
             heading = parameters.rotation,
