@@ -119,6 +119,8 @@ Bridge.notify.NotifyPlayer(source, {
     description = "Seus itens foram salvos.",
     type        = "success"
 })
+```
+
 **🖥️ Server-side**
 Acione remotamente:
 ```lua
@@ -315,6 +317,8 @@ Bridge.notify.NotifyPlayer(source, {
     description = "Seus itens foram salvos.",
     type        = "success"
 })
+```
+
 **🖥️ Server-side**
 Acione remotamente:
 ```lua
