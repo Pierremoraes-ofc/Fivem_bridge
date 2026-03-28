@@ -113,10 +113,21 @@ end)
 
 #### 4. Notifications (`Bridge.notify`)
 **💻 Client-side**
-* **`Bridge.notify.Notify({title, description, type, duration})`**
-
-**🖥️ Server-side:**
-`TriggerClientEvent('bridge:notify', source, {title = 'Notice', description = 'Text', type = 'inform'})`
+```lua
+Bridge.notify.NotifyPlayer(source, {
+    title       = "Sistema",
+    description = "Seus itens foram salvos.",
+    type        = "success"
+})
+**🖥️ Server-side**
+Acione remotamente:
+```lua
+Bridge.notify.NotifyAll({
+    title       = "Aviso",
+    description = "O servidor reinicia em 5 minutos.",
+    type        = "error"
+})
+```
 
 #### 5. Phones (`Bridge.phone`)
 **💻 Client-side**
