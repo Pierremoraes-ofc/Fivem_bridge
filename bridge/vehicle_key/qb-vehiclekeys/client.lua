@@ -1,5 +1,7 @@
 local vehicle_key = {}
 
+if ActiveBridges["vehicle_key"] ~= "qb-vehiclekeys" then return end
+
 ---Gives the player (self) the keys of the specified vehicle.
 ---@param vehicle number The vehicle entity handle.
 ---@param plate? string The plate of the vehicle.

@@ -1,4 +1,7 @@
 local vehicle_key = {}
+
+if ActiveBridges["vehicle_key"] ~= "wasabi_carlock" then return end
+
 local wasabi_carlock = exports.wasabi_carlock
 
 function vehicle_key.ToggleLock()

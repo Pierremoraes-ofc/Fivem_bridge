@@ -1,6 +1,8 @@
 local notifications = {}
 
-Debug('SUCCESS', Lang:t('Debug.NotificationDetected') .. 'ESX Notification')
+if ActiveBridges["notification"] ~= "esx" then return end
+
+Debug('SUCCESS', Lang:t('Debug.NotificationDetected', { notification = 'ESX Notification' }))
 
 ---Send notification to player
 ---@param src number

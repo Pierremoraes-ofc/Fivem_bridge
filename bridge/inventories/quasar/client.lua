@@ -1,4 +1,7 @@
 local inventory = {}
+
+if ActiveBridges["inventory"] ~= "quasar" then return end
+
 local qs_inventory = exports['qs-inventory']
 
 ---@param invType string

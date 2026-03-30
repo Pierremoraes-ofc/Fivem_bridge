@@ -1,3 +1,5 @@
+if ActiveBridges["frameworks"] ~= "qbx" then return end
+
 require("@qbx_core/modules/playerdata")
 local framework = {}
 local qbx_core = exports.qbx_core

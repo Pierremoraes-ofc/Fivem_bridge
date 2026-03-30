@@ -1,7 +1,6 @@
 -- bridge.fuel.cdn.server
-if GetResourceState('lc_fuel') == 'started' then
-    Debug('SUCCESS', Lang:t('Debug.FuelDetected') .. 'LC Fuel')
-end
+if ActiveBridges["fuel"] ~= "lc_fuel" then return end
+Debug('SUCCESS', Lang:t('Debug.FuelDetected', { fuel = 'LC Fuel' }))
 
 
 

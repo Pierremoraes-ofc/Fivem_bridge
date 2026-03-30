@@ -1,4 +1,8 @@
 local vehicle_key = {}
+
+if ActiveBridges["vehicle_key"] ~= "mri_Qcarkeys" then return end
+
+
 local mri_Qcarkeys = exports.mri_Qcarkeys
 
 function vehicle_key.GiveTempKeys(plate)

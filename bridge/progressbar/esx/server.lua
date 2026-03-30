@@ -1,4 +1,7 @@
+local progress = {}
 
-if GetResourceState('esx_progressbar') == 'started' then
-    Debug('SUCCESS', Lang:t('Debug.ProgressbarDetected') .. 'ESX Progressbar')
-end
+if ActiveBridges["progressbar"] ~= "esx" then return end
+
+Debug('SUCCESS', Lang:t('Debug.ProgressbarDetected', { progressbar = 'ESX Progressbar' }))
+
+return progress

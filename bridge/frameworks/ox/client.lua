@@ -1,4 +1,6 @@
 local framework = {}
+if ActiveBridges["frameworks"] ~= "ox" then return end
+
 local Ox = require "@ox_core.lib.init"
 
 ---Get Player data

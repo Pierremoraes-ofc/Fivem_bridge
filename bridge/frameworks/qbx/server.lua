@@ -1,4 +1,6 @@
 local framework = {}
+if ActiveBridges["frameworks"] ~= "qbx" then return end
+
 local qbx_core = exports.qbx_core
 
 Debug('SUCCESS', Lang:t('Debug.FrameworkDetected') .. 'QBX Core')

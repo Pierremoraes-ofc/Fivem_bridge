@@ -1,4 +1,5 @@
 local inventory = {}
+if ActiveBridges["inventory"] ~= "ox" then return end
 local ox_inventory = exports.ox_inventory
 
 function inventory.openInventory(invType, data)

@@ -1,6 +1,6 @@
 
-if GetResourceState('qb-vehiclekeys') == 'started' then
-    Debug('SUCCESS', Lang:t('Debug.VehicleKeyDetected') .. 'QB Vehicle Keys')
-end
+if ActiveBridges["vehicle_key"] ~= "qb-vehiclekeys" then return end
+
+Debug('SUCCESS', Lang:t('Debug.VehicleKeyDetected', { vehicle_key = 'QB Vehicle Keys' }))
 
 return {}

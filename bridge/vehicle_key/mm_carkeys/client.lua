@@ -1,4 +1,7 @@
 local vehicle_key = {}
+
+if ActiveBridges["vehicle_key"] ~= "mm_carkeys" then return end
+
 local mm_carkeys = exports.mm_carkeys
 
 function vehicle_key.GiveTempKeys(plate)

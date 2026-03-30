@@ -1,6 +1,6 @@
 
-if GetResourceState('qb-target') == 'started' then
-    Debug('SUCCESS', Lang:t('Debug.TargetDetected') .. 'QB Target')
-end
+if ActiveBridges["target"] ~= "qb" then return end
+
+Debug('SUCCESS', Lang:t('Debug.TargetDetected', { target = 'QB Target' }))
 
 return {}

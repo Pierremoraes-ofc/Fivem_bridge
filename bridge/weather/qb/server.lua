@@ -1,6 +1,5 @@
 
-if GetResourceState('qb-weathersync') == 'started' then
-    Debug('SUCCESS', Lang:t('Debug.WeatherDetected') .. 'QB Weather')
-end
+if ActiveBridges["weather"] ~= "qb" then return end
+Debug('SUCCESS', Lang:t('Debug.WeatherDetected', { weather = 'QB Weather' }))
 
 return {}

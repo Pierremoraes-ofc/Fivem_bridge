@@ -1,7 +1,6 @@
 -- bridge.weather.renewed.server
 
-if GetResourceState('renewed_weather') == 'started' then
-    Debug('SUCCESS', Lang:t('Debug.WeatherDetected') .. 'Renewed Weather')
-end
+if ActiveBridges["weather"] ~= "renewed" then return end
+Debug('SUCCESS', Lang:t('Debug.WeatherDetected', { weather = 'Renewed Weather' }))
 
 return {}

@@ -1,4 +1,6 @@
 local framework = {}
+if ActiveBridges["frameworks"] ~= "nd" then return end
+
 local NDCore = exports["ND_Core"]
 
 ---Get Player data

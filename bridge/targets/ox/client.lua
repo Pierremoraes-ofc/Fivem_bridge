@@ -1,4 +1,7 @@
 local target = {}
+
+if ActiveBridges["target"] ~= "ox" then return end
+
 local ox_target = exports.ox_target
 
 function target.disableTargeting(state)

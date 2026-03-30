@@ -1,5 +1,7 @@
 local phone = {}
 
+if ActiveBridges["phone"] ~= "y_phone" then return end
+
 function phone.InPhone()
     return exports.yseries:IsOpen()
 end

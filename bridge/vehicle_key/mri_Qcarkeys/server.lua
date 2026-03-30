@@ -1,9 +1,9 @@
 local vehicle_key = {}
 local mri_Qcarkeys = exports.mri_Qcarkeys
 
-if GetResourceState('mri_Qcarkeys') == 'started' then
-    Debug('SUCCESS', Lang:t('Debug.VehicleKeyDetected') .. 'MRI Qcarkeys')
-end
+if ActiveBridges["vehicle_key"] ~= "mri_Qcarkeys" then return end
+
+Debug('SUCCESS', Lang:t('Debug.VehicleKeyDetected', { vehicle_key = 'MRI Qcarkeys' }))
 
 function vehicle_key.GiveTempKeys(source, plate)
     mri_Qcarkeys:GiveTempKeys(source, plate)

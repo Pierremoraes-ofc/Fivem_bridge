@@ -1,3 +1,5 @@
+ActiveBridges = {}
+
 --- Gets the bridge functions
 ---@param bridgeType string Bridge type from config.lua
 ---@return string
@@ -8,12 +10,15 @@ local function getBridge(bridgeType)
     for i = 1, #bridge do
         local info = bridge[i]
         if GetResourceState(info.resource):find("start") then
+            ActiveBridges[bridgeType] = info.folder
             return ("bridge.%s.%s.%s"):format(bridgeType, info.folder, context)
         end
     end
 
+    ActiveBridges[bridgeType] = "default"
     return ("bridge.%s.%s.%s"):format(bridgeType, "default", context)
 end
+
 
 Bridge = {
     framework = lib.load(getBridge("frameworks")),

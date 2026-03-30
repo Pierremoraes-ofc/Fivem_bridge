@@ -1,4 +1,5 @@
 local inventory = {}
+if ActiveBridges["inventory"] ~= "codem" then return end
 local codem_inventory = exports['codem-inventory']
 
 function inventory.openInventory(invType, data)

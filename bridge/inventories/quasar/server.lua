@@ -1,7 +1,10 @@
 local inventory = {}
+
+if ActiveBridges["inventory"] ~= "quasar" then return end
+
 local qs_inventory = exports['qs-inventory']
 
-Debug('SUCCESS', Lang:t('Debug.InventoryDetected') .. 'Quasar Inventory')
+Debug('SUCCESS', Lang:t('Debug.InventoryDetected', { inventory = 'Quasar Inventory' }))
 
 ---@param player number
 ---@param data table

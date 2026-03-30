@@ -25,11 +25,11 @@ if IsDuplicityVersion() then
             local latestVersion = data.tag_name:gsub("^v", "") -- remove "v" se tiver, ex: "v1.0.1" -> "1.0.1"
 
             if latestVersion ~= CURRENT_VERSION then
-                Debug('WARN', Lang:t('message.UpdateAvailable', latestVersion, CURRENT_VERSION))
-                Debug('WARN', Lang:t('message.UpdateAvailableLink', REPO_OWNER, REPO_NAME))
+                Debug('WARN', Lang:t('message.UpdateAvailable', { newversion = latestVersion, oldversion = CURRENT_VERSION }))
+                Debug('WARN', Lang:t('message.UpdateAvailableLink', { author = REPO_OWNER, repo = REPO_NAME }))
             else
                 if Config.debug then
-                    Debug('SUCCESS', Lang:t('message.UpdateChecked', CURRENT_VERSION))
+                    Debug('SUCCESS', Lang:t('message.UpdateChecked', { oldversion = CURRENT_VERSION }))
                 end
             end
         end, "GET", "", { ["User-Agent"] = "fivem_bridge" })

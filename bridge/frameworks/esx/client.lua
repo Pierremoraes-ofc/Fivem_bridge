@@ -1,4 +1,6 @@
 local framework = {}
+if ActiveBridges["frameworks"] ~= "esx" then return end
+
 local ESX = exports["es_extended"]:getSharedObject()
 
 ---Get Player data

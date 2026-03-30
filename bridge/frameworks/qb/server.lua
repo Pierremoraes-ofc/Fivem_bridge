@@ -1,7 +1,9 @@
 local framework = {}
+if ActiveBridges["frameworks"] ~= "qb" then return end
+
 local QBCore = exports["qb-core"]:GetCoreObject()
 
-Debug('SUCCESS', Lang:t('Debug.FrameworkDetected') .. 'QB Core')
+Debug('SUCCESS', Lang:t('Debug.FrameworkDetected', { framework = 'QB Core' }))
 
 function framework.RegisterCallback(name, cb)
     QBCore.Functions.CreateCallback(name, cb)

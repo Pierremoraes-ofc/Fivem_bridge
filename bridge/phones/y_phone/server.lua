@@ -1,8 +1,9 @@
 local phone = {}
 
-if GetResourceState('yseries') == 'started' then
-    Debug('SUCCESS', Lang:t('Debug.PhoneDetected') .. 'Y-Phone')
-end
+if ActiveBridges["phone"] ~= "y_phone" then return end
+
+Debug('SUCCESS', Lang:t('Debug.PhoneDetected', { phone = 'Y-Phone' }))
+
 ---Get a list of all available phone names in the system.
 ---@return table
 function phone.GetPhoneNames()

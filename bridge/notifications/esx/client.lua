@@ -1,5 +1,8 @@
 ---@diagnostic disable: assign-type-mismatch
 local notifications = {}
+
+if ActiveBridges["notification"] ~= "esx" then return end
+
 local ESX = exports["es_extended"]:getSharedObject()
 
 --- Notification

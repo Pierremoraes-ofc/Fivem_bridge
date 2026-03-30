@@ -1,5 +1,8 @@
 ---@diagnostic disable: assign-type-mismatch
 local notifications = {}
+
+if ActiveBridges["notification"] ~= "qb" then return end
+
 local QBCore = exports["qb-core"]:GetCoreObject()
 
 --- Notification

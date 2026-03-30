@@ -1,5 +1,7 @@
 local phone = {}
 
+if ActiveBridges["phone"] ~= "qs_smartphone" then return end
+
 function phone.InPhone()
     return exports['qs-smartphone-pro']:InPhone()
 end

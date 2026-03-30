@@ -1,8 +1,8 @@
 local phone = {}
 
-if GetResourceState('qs-smartphone-pro') == 'started' then
-    Debug('SUCCESS', Lang:t('Debug.PhoneDetected') .. 'QS Smartphone Pro')
-end
+if ActiveBridges["phone"] ~= "qs_smartphone" then return end
+
+Debug('SUCCESS', Lang:t('Debug.PhoneDetected', { phone = 'QS Smartphone Pro' }))
 
 ---Get a list of all available phone names in the system.
 ---@return table

@@ -1,6 +1,8 @@
 local notifications = {}
 
-Debug('SUCCESS', Lang:t('Debug.NotificationDetected') .. 'Ox Lib Notification')
+if ActiveBridges["notification"] ~= "ox_lib" then return end
+
+Debug('SUCCESS', Lang:t('Debug.NotificationDetected', { notification = 'Ox Lib Notification' }))
 
 ---Send notification to player
 ---@param src number

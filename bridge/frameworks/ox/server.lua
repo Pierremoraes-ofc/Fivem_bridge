@@ -1,7 +1,9 @@
 local framework = {}
+if ActiveBridges["frameworks"] ~= "ox" then return end
+
 local Ox = require '@ox_core.lib.init'
 
-Debug('SUCCESS', Lang:t('Debug.FrameworkDetected') .. 'OX Core')
+Debug('SUCCESS', Lang:t('Debug.FrameworkDetected', { framework = 'OX Core' }))
 
 function framework.RegisterCallback(name, cb)
     if lib and lib.callback then

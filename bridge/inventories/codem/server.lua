@@ -1,7 +1,8 @@
 local inventory = {}
+if ActiveBridges["inventory"] ~= "codem" then return end
 local codem_inventory = exports['codem-inventory']
 
-Debug('SUCCESS', Lang:t('Debug.InventoryDetected') .. 'Codem Inventory')
+Debug('SUCCESS', Lang:t('Debug.InventoryDetected', { inventory = 'Codem Inventory' }))
 
 ---@param player number
 ---@param data table

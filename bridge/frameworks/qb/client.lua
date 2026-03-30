@@ -1,4 +1,6 @@
 local framework = {}
+if ActiveBridges["frameworks"] ~= "qb" then return end
+
 local QBCore = exports["qb-core"]:GetCoreObject()
 
 ---Get Player data

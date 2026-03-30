@@ -1,7 +1,8 @@
 local inventory = {}
+if ActiveBridges["inventory"] ~= "ox" then return end
 local ox_inventory = exports.ox_inventory
 
-Debug('SUCCESS', Lang:t('Debug.InventoryDetected') .. 'Ox Inventory')
+Debug('SUCCESS', Lang:t('Debug.InventoryDetected', { inventory = 'Ox Inventory' }))
 
 function inventory.setPlayerInventory(player, data)
     ox_inventory:setPlayerInventory(player, data)

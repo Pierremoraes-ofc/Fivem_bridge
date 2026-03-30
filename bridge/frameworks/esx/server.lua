@@ -1,7 +1,9 @@
 local framework = {}
+if ActiveBridges["frameworks"] ~= "esx" then return end
+
 local ESX = exports["es_extended"]:getSharedObject()
 
-Debug('SUCCESS', Lang:t('Debug.FrameworkDetected') .. 'ESX Legacy')
+Debug('SUCCESS', Lang:t('Debug.FrameworkDetected', { framework = 'ESX Legacy' }))
 
 
 function framework.RegisterCallback(name, cb)

@@ -1,5 +1,7 @@
 local phone = {}
 
+if ActiveBridges["phone"] ~= "okok_phone" then return end
+
 function phone.InPhone()
     return LocalPlayer.state['okokPhone:isOpen']
 end

@@ -1,7 +1,8 @@
 local inventory = {}
+if ActiveBridges["inventory"] ~= "origen" then return end
 local origen_inventory = exports.origen_inventory
 
-Debug('SUCCESS', Lang:t('Debug.InventoryDetected') .. 'Origen Inventory')
+Debug('SUCCESS', Lang:t('Debug.InventoryDetected', { inventory = 'Origen Inventory' }))
 
 ---@param player number
 ---@param data table

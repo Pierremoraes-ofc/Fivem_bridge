@@ -1,8 +1,8 @@
 local phone = {}
 
-if GetResourceState('lb-phone') == 'started' then
-    Debug('SUCCESS', Lang:t('Debug.PhoneDetected') .. 'LB-Phone')
-end
+if ActiveBridges["phone"] ~= "lb_phone" then return end
+
+Debug('SUCCESS', Lang:t('Debug.PhoneDetected', { phone = 'LB-Phone' }))
 
 
 ---Get a list of all available phone names in the system.

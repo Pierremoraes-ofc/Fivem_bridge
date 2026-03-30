@@ -89,10 +89,11 @@ local DebugFilters = {
 
 function Debug(name, ...)
 	local fn = DebugFilters[name]
-
-	if fn then
-		fn(...)
-	elseif Config.Debug then
-		print('[DEBUG]:', ...)
-	end
+    if Config.Debug then
+        if fn then
+            fn(...)
+        elseif Config.Debug then
+            print('[DEBUG]:', ...)
+        end
+    end
 end

@@ -1,4 +1,7 @@
 local progress = {}
+
+if ActiveBridges["progressbar"] ~= "esx" then return end
+
 local ESX = exports["es_extended"]:getSharedObject()
 
 function progress.doProgressbar(duration, label, anim)

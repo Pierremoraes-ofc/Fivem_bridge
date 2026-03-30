@@ -1,5 +1,7 @@
 local weather = {}
 
+if ActiveBridges["weather"] ~= "qb" then return end
+
 ---This will toggle the players weather/time sync
 ---@param toggle boolean
 function weather.ToggleSync(toggle)

@@ -1,5 +1,7 @@
 local progress = {}
 
+if ActiveBridges["progressbar"] ~= "qbx" then return end
+
 function progress.doProgressbar(duration, label, anim)
     if lib.progressBar({
             duration = duration,

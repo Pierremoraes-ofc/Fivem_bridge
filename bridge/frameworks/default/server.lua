@@ -1,6 +1,5 @@
 local framework = {}
 
-Debug('SUCCESS', Lang:t('Debug.FrameworkDetected') .. 'Custom Framework')
 
 --- Retorna as coordenadas do player (compatível com ESX e QBCore)
 --- @param source number

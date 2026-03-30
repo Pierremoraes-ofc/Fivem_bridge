@@ -1,9 +1,8 @@
 local vehicle_key = {}
-local mm_carkeys = exports.mm_carkeys
 
-if GetResourceState('mm_carkeys') == 'started' then
-    Debug('SUCCESS', Lang:t('Debug.VehicleKeyDetected') .. 'MM Car Keys')
-end
+if ActiveBridges["vehicle_key"] ~= "mm_carkeys" then return end
+Debug('SUCCESS', Lang:t('Debug.VehicleKeyDetected', { vehicle_key = 'MM Car Keys' }))
+local mm_carkeys = exports.mm_carkeys
 
 function vehicle_key.GiveTempKeys(source, plate)
     mm_carkeys:GiveTempKeys(source, plate)

@@ -1,4 +1,5 @@
 local fuel = {}
+if ActiveBridges["fuel"] ~= "lc_fuel" then return end
 
 ---@description Returns the name of the active fuel resource.
 ---@return string

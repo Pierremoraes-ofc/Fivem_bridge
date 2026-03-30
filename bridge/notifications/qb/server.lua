@@ -1,8 +1,10 @@
 local notifications = {}
 
-Debug('SUCCESS', Lang:t('Debug.NotificationDetected') .. 'QBX Notification')
+if ActiveBridges["notification"] ~= "qb" then return end
 
----Send notification to player
+Debug('SUCCESS', Lang:t('Debug.NotificationDetected', { notification = 'QBX Notification' }))
+
+---Send notification to playerPos
 ---@param src number
 ---@param data NotificationData
 function notifications.Notify(src, data)

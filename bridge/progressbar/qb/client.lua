@@ -1,4 +1,7 @@
 local progress = {}
+
+if ActiveBridges["progressbar"] ~= "qb" then return end
+
 local QBCore = exports["qb-core"]:GetCoreObject()
 
 function progress.doProgressbar(duration, label, anim)

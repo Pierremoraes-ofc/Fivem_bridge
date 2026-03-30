@@ -2,6 +2,10 @@
 -- AddComboZone, AddTargetBone, AddEntityZone; is not bridged, very useless and not worth using.
 
 local target = {}
+
+if ActiveBridges["target"] ~= "qb" then return end
+
+
 local spheres = {}
 local qb_target = exports["qb-target"]
 local zonesCreated = {}
