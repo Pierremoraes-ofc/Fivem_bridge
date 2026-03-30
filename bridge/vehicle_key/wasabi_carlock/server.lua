@@ -2,7 +2,7 @@ local vehicle_key = {}
 
 if ActiveBridges["vehicle_key"] ~= "wasabi_carlock" then return end
 
-Debug('SUCCESS', Lang:t('Debug.VehicleKeyDetected', { vehicle_key = 'Wasabi CarLock' }))
+Debug('SUCCESS', Lang:t('Debug.VehicleKeyDetected', { vehiclekey = 'Wasabi CarLock' }))
 
 local wasabi_carlock = exports.wasabi_carlock
 local wasabi_scripts = exports.wasabi_scripts

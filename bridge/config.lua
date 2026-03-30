@@ -67,23 +67,23 @@ ConfigBridge = {
 }
 
 Config = {
-    Debug = false                               -- toggle para devs
+    Debug = true                               -- toggle para devs
 }
 local DebugFilters = {
 	SUCCESS = function(...)
-		print('[DEBUG SUCCESS]:', ...)
+		print('^2[DEBUG SUCCESS]:^0', ...)
 	end,
 
 	INFO = function(...)
-		print('[DEBUG INFO]:', ...)
+		print('^3[DEBUG INFO]:^0', ...)
 	end,
 
 	ERROR = function(...)
-		print('[DEBUG ERROR]:', ...)
+		print('^1[DEBUG ERROR]:^0', ...)
 	end,
 
 	WARNING = function(...)
-		print('[DEBUG WARNING]:', ...)
+		print('^4[DEBUG WARNING]:^0', ...)
 	end
 }
 

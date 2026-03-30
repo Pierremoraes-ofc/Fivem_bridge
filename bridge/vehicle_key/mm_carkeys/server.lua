@@ -1,7 +1,7 @@
 local vehicle_key = {}
 
 if ActiveBridges["vehicle_key"] ~= "mm_carkeys" then return end
-Debug('SUCCESS', Lang:t('Debug.VehicleKeyDetected', { vehicle_key = 'MM Car Keys' }))
+Debug('SUCCESS', Lang:t('Debug.VehicleKeyDetected', { vehiclekey = 'MM Car Keys' }))
 local mm_carkeys = exports.mm_carkeys
 
 function vehicle_key.GiveTempKeys(source, plate)
