@@ -2,4 +2,6 @@
 
 ## 🌐 Documentation
 
-📚 [Access Full Documentation]([[https://seu-gitbook.gitbook.io](https://pierremoraes.gitbook.io/home/fivem/fivem-bridge)](https://pierremoraes.gitbook.io/home/fivem/fivem-bridge))
+📚 [Access Full Documentation]((https://pierremoraes.gitbook.io/home/fivem/fivem-bridge))
+
+[![Docs](https://img.shields.io/badge/Documentation-GitBook-blue)]((https://pierremoraes.gitbook.io/home/fivem/fivem-bridge))
